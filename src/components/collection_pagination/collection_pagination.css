@@ -1,0 +1,37 @@
+.pagination-btn {
+  padding: 4px;
+  border: 1px solid #6a0bff;
+  border-radius: 50%;
+}
+.pagination-container {
+  display: flex;
+  gap: 10px;
+}
+.pagination-number {
+  min-width: 21px;
+  height: 25px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #ffffff;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 120%;
+}
+.selected-btn {
+  background-color: #6a0bff;
+  border-radius: 2px;
+  color: #ffffff;
+}
+.pagination-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

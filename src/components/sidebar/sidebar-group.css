@@ -1,0 +1,30 @@
+.sidebar-group {
+  margin-bottom: 24px;
+}
+.sidebar-group__content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.sidebar-group__title {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+  margin-bottom: 8px;
+  color: #474747;
+}
+.sidebar-group__btn {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #6a0bff;
+  cursor: pointer;
+}
+.sidebar-group__btn:hover {
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0%;
+}
