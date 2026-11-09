@@ -3,7 +3,6 @@ import gitHub from "../assets/github.png";
 import telegram from "../assets/telegram.png";
 import tic from "../assets/tic.png";
 import youtube from "../assets/youtube.png";
-import type { CollectionFilters } from "../types/collections.types";
 
 interface Access {
   id: number;
@@ -15,21 +14,6 @@ export const ACCESS_OPTIONS: Access[] = [
   { id: 0, title: "Для участников", isFree: false },
   { id: 1, title: "Для всех", isFree: true },
 ];
-
-// export const INITIAL_FILTERS = {
-//   spec: 11,
-//   skills: [],
-//   levels: [],
-//   rates: [],
-//   search: "",
-// };
-
-// export const INITIAL_COLLECTION_FILTERS: CollectionFilters = {
-//   search: "",
-//   specializations: [],
-//   isFree: undefined,
-//   keywords: [],
-// };
 
 export const LIMIT = 10;
 
