@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from "react";
 import arrowLeft from "./../../assets/arrow_left.png";
 import arrowRight from "./../../assets/arrow_right.png";
 import "./collection_pagination.css";
@@ -6,7 +5,7 @@ import "./collection_pagination.css";
 interface CollectionPaginationProps {
   currentPage: number;
   totalPages: number;
-  onPageChange: Dispatch<SetStateAction<number>>;
+  onPageChange: (page: number) => void;
 }
 
 export default function CollectionPagination({
@@ -45,11 +44,15 @@ export default function CollectionPagination({
   const pages = getPaginationPages(currentPage, totalPages);
 
   const handlePrevPageClick = () => {
-    onPageChange((prev) => (prev > 1 ? prev - 1 : prev));
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+    }
   };
 
   const handleNextPageClick = () => {
-    onPageChange((prev) => (prev < totalPages ? prev + 1 : prev));
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1);
+    }
   };
 
   return (

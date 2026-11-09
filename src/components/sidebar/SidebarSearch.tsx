@@ -17,6 +17,10 @@ export default function SidebarSearch({
   const debouncedSearch = useDebounce(search, 500);
 
   useEffect(() => {
+    setSearch(value);
+  }, [value]);
+
+  useEffect(() => {
     const trimmed = debouncedSearch.trim();
     if (trimmed !== value) {
       onChange(trimmed);
