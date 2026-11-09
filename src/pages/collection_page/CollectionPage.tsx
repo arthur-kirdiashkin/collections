@@ -138,7 +138,10 @@ export default function CollectionPage() {
                   {isQuestionsLoading ? (
                     <Spinner />
                   ) : (
-                    <QuestionList questions={questions} />
+                    <QuestionList
+                      questions={questions}
+                      collectionId={currentId}
+                    />
                   )}
 
                   {!isQuestionsLoading && totalPages > 1 && (

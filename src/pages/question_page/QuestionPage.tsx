@@ -22,6 +22,8 @@ export default function QuestionPage() {
 
   const questions: Question[] = location.state?.questions || [];
 
+  const collectionId: number = location.state?.collectionId;
+
   const currentId = Number(questionId);
 
   const [loading, setLoading] = useState(true);
@@ -50,32 +52,37 @@ export default function QuestionPage() {
     fetchQuestion();
   }, [currentId]);
 
+  const currentIndex = questions.findIndex(
+    (ques) => Number(ques.id) === currentId,
+  );
+
+  const hasPrev = currentIndex > 0;
+  const hasNext = currentIndex !== -1 && currentIndex < questions.length - 1;
+
   const handleNext = () => {
-    const currentIndex = questions.findIndex(
-      (ques) => Number(ques.id) === currentId,
-    );
-    if (currentIndex !== -1) {
+    if (hasNext) {
       const nextId = questions[currentIndex + 1].id;
       navigate(`/questions/${Number(nextId)}`, {
-        state: { questions },
+        state: { questions, collectionId },
       });
     }
   };
 
   const handlePrev = () => {
-    const currentIndex = questions.findIndex(
-      (ques) => Number(ques.id) === currentId,
-    );
-    if (currentIndex !== -1) {
+    if (hasPrev) {
       const prevId = questions[currentIndex - 1].id;
       navigate(`/questions/${Number(prevId)}`, {
-        state: { questions },
+        state: { questions, collectionId },
       });
     }
   };
 
   const handleClick = () => {
-    navigate(-1);
+    if (collectionId) {
+      navigate(`/collections/${collectionId}`);
+    } else {
+      navigate(-1);
+    }
   };
 
   if (loading) {
@@ -128,6 +135,7 @@ export default function QuestionPage() {
               <button
                 onClick={handlePrev}
                 className="question-nav__btn question-nav__btn--prev"
+                disabled={!hasPrev}
               >
                 <img src={altArrowLeft} alt="" aria-hidden="true" />
                 <span className="question-nav__text">Предыдущий</span>
@@ -136,6 +144,7 @@ export default function QuestionPage() {
               <button
                 onClick={handleNext}
                 className="question-nav__btn question-nav__btn--next"
+                disabled={!hasNext}
               >
                 <span className="question-nav__text">Следующий</span>
                 <img src={altArrowRight} alt="" aria-hidden="true" />

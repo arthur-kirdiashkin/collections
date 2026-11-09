@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./question_answer.css";
 import arrowDown from "../../assets/arrow_down.png";
 import arrowUp from "../../assets/arrow_upp.png";
+import DOMPurify from "dompurify";
 
 interface QuestionAnswerProps {
   title: string;
@@ -12,11 +13,15 @@ export default function QuestionAnswer({ title, answer }: QuestionAnswerProps) {
   const [height, setHeight] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
+  const cleanAnswer = useMemo(() => {
+    return DOMPurify.sanitize(answer || "");
+  }, [answer]);
+
   useEffect(() => {
     if (ref.current) {
       setHeight(ref.current.scrollHeight);
     }
-  }, [answer]);
+  }, [cleanAnswer]);
 
   const [isActive, setIsActive] = useState(false);
 
@@ -34,7 +39,7 @@ export default function QuestionAnswer({ title, answer }: QuestionAnswerProps) {
             ? "question-answer__desc short"
             : "question-answer__desc"
         }
-        dangerouslySetInnerHTML={{ __html: answer }}
+        dangerouslySetInnerHTML={{ __html: cleanAnswer }}
       />
       {height >= 693 && (
         <button onClick={onQuestionClick} className="question-answer__btn">

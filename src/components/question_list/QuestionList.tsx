@@ -5,9 +5,13 @@ import QuestionItem from "./QuestionItem";
 
 interface QuestionListProps {
   questions: Question[];
+  collectionId?: string | number;
 }
 
-export default function QuestionList({ questions }: QuestionListProps) {
+export default function QuestionList({
+  questions,
+  collectionId,
+}: QuestionListProps) {
   if (!questions || !Array.isArray(questions)) {
     return (
       <div className="questions-list questions-list--empty">
@@ -30,6 +34,7 @@ export default function QuestionList({ questions }: QuestionListProps) {
     <div className="questions-list">
       {questions.map((question: Question) => (
         <QuestionItem
+          collectionId={collectionId}
           key={question.id}
           questions={questions}
           question={question}

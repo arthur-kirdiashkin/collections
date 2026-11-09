@@ -11,12 +11,13 @@ import QuestionMetric from "../question_metric/QuestionMetric";
 interface QuestionItemProps {
   questions: Question[];
   question: Question;
+  collectionId?: string | number;
 }
 
 export default function QuestionItem({
   questions,
   question,
-
+  collectionId,
 }: QuestionItemProps) {
   const { id, title, shortAnswer, rate, complexity, imageSrc } = question;
 
@@ -61,7 +62,7 @@ export default function QuestionItem({
           <Link
             className="question__action"
             to={`/questions/${id}`}
-            state={{ questions, collectionId: question.id }}
+            state={{ questions, collectionId }}
           >
             <span className="question__button">Подробнее</span>
             <img src={arrowRight} alt="Стрелка вправо" />
